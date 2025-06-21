@@ -10,38 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "mlx/mlx.h"
-#define WIDTH 600
-#define HEIGHT 400
-int	main()
-{
-	void	*mlx_ptr;
-	void	*mlx_window;
-	int		x;
-	int		y;
+#include "so_long.h"
 
-	mlx_ptr = mlx_init();
-	if (mlx_ptr == NULL)
-		return (1);
-	mlx_window = mlx_new_window(mlx_ptr, WIDTH, HEIGHT, "so_long");
-	if(!mlx_window)
-		return(free(mlx_ptr), 1);
-	y = HEIGHT * 0.1;
-	while(y < HEIGHT * 0.9)
+int	main(int ac, char **av)
+{
+	t_game	game;
+	int		w;
+	int		h;
+	int		frame;
+
+/* 	if (ac != 2)
+		return(1);
+/* 	game.map = read_map (av[1]);
+	if(!game.map)
+		return (1); */
+	game.mlx = mlx_init();
+	game.win = mlx_new_window(game.mlx, 640, 480, "so_long");
+	game.idle_imgs[0] = mlx_xpm_file_to_image(game.mlx, "cats_sprite/idle/idle01.xpm", &w, &h);
+	game.idle_imgs[1] = mlx_xpm_file_to_image(game.mlx, "cats_sprite/idle/idle02.xpm", &w, &h);
+	frame = 0;
+	while (1)
 	{
-		x = WIDTH * 0.1;
-		while(x < WIDTH * 0.9)
-		{
-			mlx_pixel_put(mlx_ptr, mlx_window, x, y, rand() % 0x1000000);
-			x++;
-		}
-		y++;
+		mlx_put_image_to_window(game.mlx, game.win, game.idle_imgs[frame], 100, 100);
+		frame = (frame + 1) % 2; // Toggle between 0 and 1
+ 		usleep(300000); // 0.3 seconds between frames
+		mlx_clear_window(game.mlx, game.win);
 	}
-	
-	mlx_loop(mlx_ptr);
-	mlx_destroy_window(mlx_ptr, mlx_window);
-	mlx_destroy_display(mlx_ptr);
-	free(mlx_ptr);
 	return (0);
+
 }

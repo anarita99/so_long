@@ -12,6 +12,7 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
 #include "mlx/mlx.h"
 #include "get_next_line/get_next_line.h"
 
@@ -24,5 +25,9 @@ typedef struct s_game
 	int		player_y;
 	int		collectibles;
 	int		moves;
+	void	*idle_imgs[3];
 }			t_game;
+
+char	**read_map(const char *filename);
+
 #endif
