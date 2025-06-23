@@ -14,8 +14,9 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Imlx
 MLX = -Lmlx -lmlx_Linux -lXext -lX11 -lm
-
-SRC = main.c cat.c keys.c
+GNL_DIR = get_next_line
+GNL_SRC = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
+SRC = main.c cat.c keys.c map.c $(GNL_SRC)
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
