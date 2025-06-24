@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adores <adores@student.42lisboa.com>       #+#  +:+       +#+        */
+/*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-06-22 15:13:15 by adores            #+#    #+#             */
-/*   Updated: 2025-06-22 15:13:15 by adores           ###   ########.fr       */
+/*   Created: 2025/06/22 15:13:15 by adores            #+#    #+#             */
+/*   Updated: 2025/06/24 17:00:02 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,21 @@
 
 int	can_move(t_game *game, int x, int y)
 {
+	int rows;
+	int cols;
+
+	if (y < 0)
+		return(0);
+	rows = 0;
+	while(game->map[rows])
+		rows++;
+	if(y >= rows)
+		return (0);
+	cols = 0;
+	while(game->map[y][cols])
+		cols++;
+	if (x < 0 || x >= cols)
+		return (0);
 	return(game->map[y][x] != '1');
 }
 
@@ -41,16 +56,16 @@ int	key_press(int keycode, t_game *game)
 
 	nx = game->cat_x;
 	ny = game->cat_y;
-	if(keycode == KEY_W)
+	if(keycode == XK_w)
 		ny--;
-	else if(keycode == KEY_S)
+	else if(keycode == XK_s)
 		ny++;
-	else if(keycode == KEY_A)
+	else if(keycode == XK_a)
 	{
 		nx--;
 		game->facing_left = 1;
 	}
-	else if(keycode == KEY_D)
+	else if(keycode == XK_d)
 	{
 		nx++;
 		game->facing_left = 0;
@@ -66,6 +81,13 @@ int	key_press(int keycode, t_game *game)
 	return(0);
 }
 
+int		destroy(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	exit(0);
+}
 /* int	key_release(int keycode, t_game *game)
 {
 	if(keycode == KEY_RIGHT)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adores <adores@student.42lisboa.com>       #+#  +:+       +#+        */
+/*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-06-20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025-06-20 12:14:08 by adores           ###   ########.fr       */
+/*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
+/*   Updated: 2025/06/24 17:00:02 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int	main(int ac, char **av)
 		return(1);
 	game->map = read_map (av[1]);
 	if(!game->map)
-		return (1);
+	{
+		printf("Error: map failed to load\n");
+    	exit(1);
+	}
 	row = 0;
 	while(game->map[row])
 	{
@@ -50,10 +53,10 @@ int	main(int ac, char **av)
 	
 	//mlx_hook(game->win, EVENT_KEY_RELEASE, 1L<<1, key_release, game);
 
-	game->idle_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/cat21.xpm", &w, &h);
-	game->idle_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/cat22.xpm", &w, &h);
-	game->idle_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/cat23.xpm", &w, &h);
-	game->idle_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/cat24.xpm", &w, &h);
+	game->idle_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle0.xpm", &w, &h);
+	game->idle_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle1.xpm", &w, &h);
+	game->idle_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle2.xpm", &w, &h);
+	game->idle_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle3.xpm", &w, &h);
 
 	game->walk_right_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/cat5.xpm", &w, &h);
 	game->walk_right_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/cat6.xpm", &w, &h);
@@ -68,9 +71,9 @@ int	main(int ac, char **av)
 	game->floor_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/floor/floor.xpm", &w, &h);
 	game->collectible_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/fish/fish.xpm", &w, &h);
 	
-	mlx_hook(game->win, EVENT_KEY_PRESS, 1L<<0, key_press, game);
+	mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
+	mlx_hook(game->win, DestroyNotify, 0, destroy, game);
 	mlx_loop_hook(game->mlx, animate_cat, game);
 	mlx_loop(game->mlx);
 	return (0);
-
 }

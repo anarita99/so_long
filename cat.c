@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adores <adores@student.42lisboa.com>       #+#  +:+       +#+        */
+/*   By: adores <adores@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-06-22 14:03:58 by adores            #+#    #+#             */
-/*   Updated: 2025-06-22 14:03:58 by adores           ###   ########.fr       */
+/*   Created: 2025/06/22 14:03:58 by adores            #+#    #+#             */
+/*   Updated: 2025/06/24 11:32:56 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
+/// @brief faz a animacao do gato
+/// @param game frames
+/// @return nao retorna
 int	animate_cat(t_game *game)
 {
 	int tile_size;
@@ -39,6 +41,5 @@ int	animate_cat(t_game *game)
 		frame = (frame + 1) % 4;
 		counter = 0;
 	}
-	printf("cat_x: %d, cat_y: %d\n", game->cat_x, game->cat_y);
 	return(0);
 }

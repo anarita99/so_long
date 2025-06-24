@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adores <adores@student.42lisboa.com>       #+#  +:+       +#+        */
+/*   By: adores <adores@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-06-20 13:32:21 by adores            #+#    #+#             */
-/*   Updated: 2025-06-20 13:32:21 by adores           ###   ########.fr       */
+/*   Created: 2025/06/20 13:32:21 by adores            #+#    #+#             */
+/*   Updated: 2025/06/24 12:24:35 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 # define SO_LONG_H
 
-#define KEY_W 119
+/* #define KEY_W 119
 #define KEY_A 97
 #define KEY_S 115
 #define KEY_D 100
 #define KEY_ESC 65307
 
 #define EVENT_KEY_PRESS 2
-#define EVENT_KEY_RELEASE 3
+#define EVENT_KEY_RELEASE 3 */
 
-#include "mlx/mlx.h"
+#include "mlx1/mlx.h"
 #include "get_next_line/get_next_line.h"
+#include <X11/X.h>
+#include <X11/keysym.h>
 
 typedef struct s_game
 {
@@ -48,7 +50,7 @@ typedef struct s_game
 char	**read_map(const char *filename);
 void	draw_map(t_game *game);
 int		animate_cat(t_game *game);
-int		handle_keys(int keycode, t_game *game);
 int		key_press(int keycode, t_game *game);
-int		key_release(int keycode, t_game *game);
+int		destroy(t_game *game);
+
 #endif

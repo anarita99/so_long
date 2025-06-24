@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adores <adores@student.42lisboa.com>       #+#  +:+       +#+        */
+/*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-06-20 16:54:24 by adores            #+#    #+#             */
-/*   Updated: 2025-06-20 16:54:24 by adores           ###   ########.fr       */
+/*   Created: 2025/06/20 16:54:24 by adores            #+#    #+#             */
+/*   Updated: 2025/06/24 17:00:02 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,11 @@ void	draw_map(t_game *game)
 		col = 0;
 		while(game->map[row][col])
 		{
-			mlx_put_image_to_window(game->mlx, game->win, game->floor_img, col *tile_size, row *tile_size);
+			//mlx_put_image_to_window(game->mlx, game->win, game->floor_img, col *tile_size, row *tile_size);
 			if (game->map[row][col] == 'C')
 				mlx_put_image_to_window(game->mlx, game->win, game->collectible_img, col * tile_size, row * tile_size);
+			else if (game->map[row][col] == '0')
+				mlx_put_image_to_window(game->mlx, game->win, game->floor_img, col *tile_size, row *tile_size);
 			col++;
 		}
 		row++;
