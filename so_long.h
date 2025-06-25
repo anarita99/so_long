@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adores <adores@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 13:32:21 by adores            #+#    #+#             */
-/*   Updated: 2025/06/24 12:24:35 by adores           ###   ########.fr       */
+/*   Updated: 2025/06/25 14:12:52 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ typedef struct s_game
 	void	*walk_right_imgs[4];
 	void	*walk_left_imgs[4];
 	void	*floor_img;
+	void	*wood_img;
 	void	*collectible_img;
+	void	*exit_img;
 	int		cat_x;
 	int		cat_y;
 	int		is_walking;

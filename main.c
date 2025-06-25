@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025/06/24 17:00:02 by adores           ###   ########.fr       */
+/*   Updated: 2025/06/25 14:38:05 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ int	main(int ac, char **av)
 	game->is_walking = 0;
 	game->facing_left = 0;
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, 640, 480, "so_long");
+	game->win = mlx_new_window(game->mlx, 832, 320, "so_long");
 	
 	//mlx_hook(game->win, EVENT_KEY_RELEASE, 1L<<1, key_release, game);
 
-	game->idle_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle0.xpm", &w, &h);
-	game->idle_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle1.xpm", &w, &h);
-	game->idle_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle2.xpm", &w, &h);
-	game->idle_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle3.xpm", &w, &h);
+	game->idle_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle00.xpm", &w, &h);
+	game->idle_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle01.xpm", &w, &h);
+	game->idle_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle02.xpm", &w, &h);
+	game->idle_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle03.xpm", &w, &h);
 
 	game->walk_right_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/cat5.xpm", &w, &h);
 	game->walk_right_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/cat6.xpm", &w, &h);
@@ -68,8 +68,10 @@ int	main(int ac, char **av)
 	game->walk_left_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/cat15.xpm", &w, &h);
 	game->walk_left_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/cat16.xpm", &w, &h);
 
-	game->floor_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/floor/floor.xpm", &w, &h);
-	game->collectible_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/fish/fish.xpm", &w, &h);
+	game->floor_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/floor/grass.xpm", &w, &h);
+	game->collectible_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/fish/fish3.xpm", &w, &h);
+	game->wood_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/wall/wall.xpm", &w, &h);
+	game->exit_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/exit/exit.xpm", &w, &h);
 	
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
 	mlx_hook(game->win, DestroyNotify, 0, destroy, game);
