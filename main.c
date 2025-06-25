@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025/06/25 14:38:05 by adores           ###   ########.fr       */
+/*   Updated: 2025/06/25 15:49:35 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ int	main(int ac, char **av)
 	game->idle_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle02.xpm", &w, &h);
 	game->idle_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle03.xpm", &w, &h);
 
-	game->walk_right_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/cat5.xpm", &w, &h);
-	game->walk_right_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/cat6.xpm", &w, &h);
-	game->walk_right_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/cat7.xpm", &w, &h);
-	game->walk_right_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/cat8.xpm", &w, &h);
+	game->walk_right_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/walk0.xpm", &w, &h);
+	game->walk_right_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/walk1.xpm", &w, &h);
+	game->walk_right_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/walk2.xpm", &w, &h);
+	game->walk_right_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/walk3.xpm", &w, &h);
 
-	game->walk_left_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/cat13.xpm", &w, &h);
-	game->walk_left_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/cat14.xpm", &w, &h);
-	game->walk_left_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/cat15.xpm", &w, &h);
-	game->walk_left_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/cat16.xpm", &w, &h);
+	game->walk_left_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/walkl0.xpm", &w, &h);
+	game->walk_left_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/walkl1.xpm", &w, &h);
+	game->walk_left_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/walkl2.xpm", &w, &h);
+	game->walk_left_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/walkl3.xpm", &w, &h);
 
 	game->floor_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/floor/grass.xpm", &w, &h);
 	game->collectible_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/fish/fish3.xpm", &w, &h);

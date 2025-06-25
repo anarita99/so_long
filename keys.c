@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 15:13:15 by adores            #+#    #+#             */
-/*   Updated: 2025/06/24 17:00:02 by adores           ###   ########.fr       */
+/*   Updated: 2025/06/25 15:56:08 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,14 @@ int	key_press(int keycode, t_game *game)
 		nx++;
 		game->facing_left = 0;
 	}
+	else
+		return(0);
 	if (can_move(game, nx, ny))
 	{
 		game->cat_x = nx;
 		game->cat_y = ny;
 		game->moves++;
-		game->walk_timer = 10;
+		game->walk_timer = 4500;
 		printf("Moves: %d\n", game->moves);
 	}
 	return(0);

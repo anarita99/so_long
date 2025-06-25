@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adores <adores@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:03:58 by adores            #+#    #+#             */
-/*   Updated: 2025/06/24 11:32:56 by adores           ###   ########.fr       */
+/*   Updated: 2025/06/25 14:50:55 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /// @return nao retorna
 int	animate_cat(t_game *game)
 {
-	int tile_size;
+	int 		tile_size;
 	static int	frame;
 	static int	counter;
 
