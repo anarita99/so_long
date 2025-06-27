@@ -6,12 +6,24 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 16:54:24 by adores            #+#    #+#             */
-/*   Updated: 2025/06/26 10:43:57 by adores           ###   ########.fr       */
+/*   Updated: 2025/06/27 16:40:04 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+/* char	**copy_map(char **map)
+{
+	int		rows;
+	int		cols;
+	char	**copy;
+	int		i;
+	int		j;
 
+	rows = 0;
+	copy = malloc(sizeof(char *) * (rows + 1));
+	if (!copy)
+		ret
+} */
 static int	count_lines(const char *filename)
 {
 	int	fd;

@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 13:32:21 by adores            #+#    #+#             */
-/*   Updated: 2025/06/26 11:18:04 by adores           ###   ########.fr       */
+/*   Updated: 2025/06/27 16:38:34 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,19 @@ typedef enum s_cat_dir
 	CAT_DOWN
 }				t_cat_dir;
 
+typedef struct s_map
+{
+	int	player;
+	int	exit;
+	int collectibles;
+}		t_map;
+
+
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
 	char		**map;
-	int			collectibles;
 	int			moves;
 	t_cat_dir	cat_dir;
 	void		*idle_imgs[4];
@@ -52,11 +59,13 @@ typedef struct s_game
 	void		*floor_img;
 	void		*wood_img;
 	void		*collectible_img;
+	int			collectibles;
 	void		*exit_img;
 	int			cat_x;
 	int			cat_y;
 	int			is_walking;
 	int			walk_timer;
+	t_map		map_things;
 }				t_game;
 
 char			**read_map(const char *filename);
@@ -64,5 +73,6 @@ void			draw_map(t_game *game);
 int				animate_cat(t_game *game);
 int				key_press(int keycode, t_game *game);
 int				destroy(t_game *game);
+int				ft_validatemap(t_game *game);
 
 #endif

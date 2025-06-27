@@ -1,0 +1,14 @@
+1111111111111
+1FF1FF1C01FF1
+1FFFF11111FF1
+1FFFFFFFFFFF1
+1111111111011
+
+P 1
+E 1
+C 1
+
+// Itere sobre a linha do gnl, contanto a quantidade de E, P e C 
+// Se E ou P for maior que 1, mapa invalido
+// Joga no flood fill, tirando da quantidade de C 
+// Se o C, ao final do flood fill for maior que 0, o mapa 'e invalido
