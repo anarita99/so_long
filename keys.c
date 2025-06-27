@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 15:13:15 by adores            #+#    #+#             */
-/*   Updated: 2025/06/25 15:56:08 by adores           ###   ########.fr       */
+/*   Updated: 2025/06/26 12:45:07 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,24 @@ int	key_press(int keycode, t_game *game)
 	nx = game->cat_x;
 	ny = game->cat_y;
 	if(keycode == XK_w)
+	{
 		ny--;
+		game->cat_dir = CAT_UP;
+	}
 	else if(keycode == XK_s)
+	{
 		ny++;
+		game->cat_dir = CAT_DOWN;
+	}
 	else if(keycode == XK_a)
 	{
 		nx--;
-		game->facing_left = 1;
+		game->cat_dir = CAT_LEFT;
 	}
 	else if(keycode == XK_d)
 	{
 		nx++;
-		game->facing_left = 0;
+		game->cat_dir = CAT_RIGHT;
 	}
 	else
 		return(0);

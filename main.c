@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025/06/25 15:49:35 by adores           ###   ########.fr       */
+/*   Updated: 2025/06/26 11:25:37 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int ac, char **av)
 		row++;
 	}
 	game->is_walking = 0;
-	game->facing_left = 0;
+
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, 832, 320, "so_long");
 	
@@ -67,6 +67,16 @@ int	main(int ac, char **av)
 	game->walk_left_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/walkl1.xpm", &w, &h);
 	game->walk_left_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/walkl2.xpm", &w, &h);
 	game->walk_left_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/walkl3.xpm", &w, &h);
+
+	game->walk_down_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_down/walkd0.xpm", &w, &h);
+	game->walk_down_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_down/walkd1.xpm", &w, &h);
+	game->walk_down_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_down/walkd2.xpm", &w, &h);
+	game->walk_down_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_down/walkd3.xpm", &w, &h);
+
+	game->walk_up_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_up/walkup0.xpm", &w, &h);
+	game->walk_up_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_up/walkup1.xpm", &w, &h);
+	game->walk_up_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_up/walkup2.xpm", &w, &h);
+	game->walk_up_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_up/walkup3.xpm", &w, &h);
 
 	game->floor_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/floor/grass.xpm", &w, &h);
 	game->collectible_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/fish/fish3.xpm", &w, &h);

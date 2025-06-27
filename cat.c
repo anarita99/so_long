@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:03:58 by adores            #+#    #+#             */
-/*   Updated: 2025/06/25 14:50:55 by adores           ###   ########.fr       */
+/*   Updated: 2025/06/26 11:24:46 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,14 @@ int	animate_cat(t_game *game)
 	draw_map(game);
 	if (game->walk_timer > 0)
 	{
-		if (game->facing_left)
+		if (game->cat_dir == CAT_LEFT)
 			mlx_put_image_to_window(game->mlx, game->win, game->walk_left_imgs[frame], game->cat_x * tile_size, game->cat_y * tile_size);
-		else
+		else if (game->cat_dir == CAT_RIGHT)
 			mlx_put_image_to_window(game->mlx, game->win, game->walk_right_imgs[frame], game->cat_x * tile_size, game->cat_y * tile_size);
+		else if (game->cat_dir == CAT_DOWN)
+			mlx_put_image_to_window(game->mlx, game->win, game->walk_down_imgs[frame], game->cat_x * tile_size, game->cat_y * tile_size);
+		else if (game->cat_dir == CAT_UP)
+			mlx_put_image_to_window(game->mlx, game->win, game->walk_up_imgs[frame], game->cat_x * tile_size, game->cat_y * tile_size);
 		game->walk_timer--;
 	}
 	else
