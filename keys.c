@@ -6,13 +6,13 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 15:13:15 by adores            #+#    #+#             */
-/*   Updated: 2025/06/26 12:45:07 by adores           ###   ########.fr       */
+/*   Updated: 2025/06/27 11:27:39 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	can_move(t_game *game, int x, int y)
+static int	can_move(t_game *game, int x, int y)
 {
 	int rows;
 	int cols;
@@ -32,22 +32,41 @@ int	can_move(t_game *game, int x, int y)
 	return(game->map[y][x] != '1');
 }
 
-/* int	handle_keys(int keycode, t_game *game)
+static int	cat_direction(int keycode, t_game *game, int *nx, int *ny)
 {
-	if(keycode == KEY_D)
+	if(keycode == XK_w)
 	{
-		game->cat_x += 10;
-		game->is_walking = 1;
-		game->facing_left = 0;
+		(*ny)--;
+		game->cat_dir = CAT_UP;
 	}
-	else if(keycode == KEY_A)
+	else if(keycode == XK_s)
 	{
-		game->cat_x -= 10;
-		game->is_walking = 1;
-		game->facing_left = 1;
+		(*ny)++;
+		game->cat_dir = CAT_DOWN;
 	}
-	return (0);
-} */
+	else if(keycode == XK_a)
+	{
+		(*nx)--;
+		game->cat_dir = CAT_LEFT;
+	}
+	else if(keycode == XK_d)
+	{
+		(*nx)++;
+		game->cat_dir = CAT_RIGHT;
+	}
+	else
+		return(0);
+	return(1);
+}
+
+void	collect_fish(t_game *game)
+{
+	if (game->map[game->cat_y][game->cat_x] == 'C')
+	{
+		game->map[game->cat_y][game->cat_x] = '0';
+		game->collectibles--;
+	}
+}
 
 int	key_press(int keycode, t_game *game)
 {
@@ -56,51 +75,24 @@ int	key_press(int keycode, t_game *game)
 
 	nx = game->cat_x;
 	ny = game->cat_y;
-	if(keycode == XK_w)
-	{
-		ny--;
-		game->cat_dir = CAT_UP;
-	}
-	else if(keycode == XK_s)
-	{
-		ny++;
-		game->cat_dir = CAT_DOWN;
-	}
-	else if(keycode == XK_a)
-	{
-		nx--;
-		game->cat_dir = CAT_LEFT;
-	}
-	else if(keycode == XK_d)
-	{
-		nx++;
-		game->cat_dir = CAT_RIGHT;
-	}
-	else
-		return(0);
+	if(!cat_direction(keycode, game, &nx, &ny))
+		return (0);
 	if (can_move(game, nx, ny))
 	{
 		game->cat_x = nx;
 		game->cat_y = ny;
 		game->moves++;
 		game->walk_timer = 4500;
+		collect_fish(game);
 		printf("Moves: %d\n", game->moves);
 	}
 	return(0);
 }
 
-int		destroy(t_game *game)
+int	destroy(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	exit(0);
 }
-/* int	key_release(int keycode, t_game *game)
-{
-	if(keycode == KEY_RIGHT)
-		game->moving_right = 0;
-	if (keycode == KEY_LEFT)
-		game->moving_left = 0;
-	return (0);
-} */
