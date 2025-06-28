@@ -11,19 +11,7 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-/* char	**copy_map(char **map)
-{
-	int		rows;
-	int		cols;
-	char	**copy;
-	int		i;
-	int		j;
 
-	rows = 0;
-	copy = malloc(sizeof(char *) * (rows + 1));
-	if (!copy)
-		ret
-} */
 static int	count_lines(const char *filename)
 {
 	int	fd;
@@ -92,4 +80,24 @@ void	draw_map(t_game *game)
 		}
 		row++;
 	}
+}
+
+int	get_map_width(char **map)
+{
+	int	width;
+
+	width = 0;
+	while(map[0][width] && map[0][width] != '\n')
+		width++;
+	return (width);
+}
+
+int	get_map_height(char **map)
+{
+	int	height;
+
+	height = 0;
+	while(map[height])
+		height++;
+	return (height);
 }

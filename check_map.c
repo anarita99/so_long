@@ -88,7 +88,7 @@ void	count_elements(t_map *things, char **map, int *collectibles)
 
 int	ft_validatemap(t_game *game)
 {
-	if(!check_walls(game->map))
+	if(!check_walls(game->map) || !is_map_rectangular(game->map))
 		return (0);
 	count_elements(&game->map_things, game->map, &game->collectibles);
 	return (1);

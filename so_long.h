@@ -24,7 +24,7 @@
 # define EVENT_KEY_RELEASE 3 */
 
 # include "get_next_line/get_next_line.h"
-# include "mlx1/mlx.h"
+# include "mlx/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 
@@ -74,5 +74,7 @@ int				animate_cat(t_game *game);
 int				key_press(int keycode, t_game *game);
 int				destroy(t_game *game);
 int				ft_validatemap(t_game *game);
-
+int				get_map_width(char **map);
+int				get_map_height(char **map);
+int				is_map_rectangular(char **map);
 #endif

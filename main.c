@@ -91,9 +91,9 @@ int	main(int ac, char **av)
 		exit(0);
 	}
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, 832, 320, "so_long");
-	w = 832;
-	h = 320;
+	w = get_map_width(game->map) * 64;
+	h = get_map_height(game->map) * 64;
+	game->win = mlx_new_window(game->mlx, w, h, "so_long");
 	load_images(game, w, h);
 	load_images2(game, w, h);
 	
