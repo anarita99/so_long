@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:11:49 by adores            #+#    #+#             */
-/*   Updated: 2025/06/27 16:58:54 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/01 11:36:44 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_walls(char **map)
 	return (1);
 }
 
-void	count_elements(t_map *things, char **map, int *collectibles)
+int	count_elements(t_map *things, char **map, int *collectibles)
 {
 	int	row;
 	int col;
@@ -72,9 +72,17 @@ void	count_elements(t_map *things, char **map, int *collectibles)
 		while(map[row][col])
 		{
 			if(map[row][col] == 'P')
+			{
 				things->player++;
+				if(things->player != 1)
+					return (0);
+			}
 			else if (map[row][col] == 'E')
+			{
 				things->exit++;
+				if (things->exit != 1)
+					return (0);
+			}
 			else if(map[row][col] == 'C')
 			{
 				things->collectibles++;
@@ -82,14 +90,14 @@ void	count_elements(t_map *things, char **map, int *collectibles)
 			}
 			col++;
 		}
-		row++;
+		row++;	
 	}
+	return (1);
 }
 
 int	ft_validatemap(t_game *game)
 {
-	if(!check_walls(game->map) || !is_map_rectangular(game->map))
+	if(!check_walls(game->map) || !is_map_rectangular(game->map) || !count_elements(&game->map_things, game->map, &game->collectibles))
 		return (0);
-	count_elements(&game->map_things, game->map, &game->collectibles);
 	return (1);
 }

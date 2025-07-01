@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025/07/01 10:46:30 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/01 15:21:53 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ void	load_images(t_game *game, int w, int h)
 	game->walk_up_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_up/walkup1.xpm", &w, &h);
 	game->walk_up_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_up/walkup2.xpm", &w, &h);
 	game->walk_up_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_up/walkup3.xpm", &w, &h);
+
+	// if (!game->walk_up_imgs[0] || !game->walk_up_imgs[1] || !game->walk_up_imgs[2])
 }
-	
+
 void	load_images2(t_game *game, int w, int h)
 {
 	game->floor_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/floor/grass.xpm", &w, &h);
@@ -73,6 +75,12 @@ void	initiate_things(t_game *game)
 	game->map_things.player = 0;
 }
 
+void	ft_error()
+{
+	write(2, "Error\n", 6);
+	exit(1);
+}
+
 int	main(int ac, char **av)
 {
 	t_game	*game;
@@ -86,23 +94,16 @@ int	main(int ac, char **av)
 		return(1);
 	game->map = read_map (av[1]);
 	if(!game->map)
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
+		ft_error();
 	initiate_things(game);
 	if (!ft_validatemap(game))
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
+		ft_error();
 	game->mlx = mlx_init();
 	w = get_map_width(game->map) * 64;
 	h = get_map_height(game->map) * 64;
 	game->win = mlx_new_window(game->mlx, w, h, "so_long");
 	load_images(game, w, h);
 	load_images2(game, w, h);
-	
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
 	mlx_hook(game->win, DestroyNotify, 0, destroy, game);
 	mlx_loop_hook(game->mlx, animate_cat, game);

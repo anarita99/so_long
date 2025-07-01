@@ -18,7 +18,11 @@ MLX = -Lmlx1 -lmlx_Linux -lXext -lX11 -lm
 
 GNL_DIR = get_next_line
 GNL_SRC = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
-SRC = main.c cat.c keys.c map.c check_map.c check_map2.c $(GNL_SRC)
+PRINTF = ft_printf/ft_printstr.c ft_printf/ft_hexaputnbr.c \
+	ft_printf/ft_printchar.c ft_printf/ft_printf.c \
+	ft_printf/ft_printnbr.c ft_printf/ft_unsputnbr.c ft_printf/ft_printp.c
+
+SRC = main.c cat.c keys.c map.c check_map.c check_map2.c free_things.c $(GNL_SRC) $(PRINTF)
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

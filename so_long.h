@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 13:32:21 by adores            #+#    #+#             */
-/*   Updated: 2025/06/30 10:21:31 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/01 16:02:25 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@
 # define EVENT_KEY_RELEASE 3 */
 
 # include "get_next_line/get_next_line.h"
+# include "ft_printf/ft_printf.h"
 # include "mlx1/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
+
 
 typedef enum s_cat_dir
 {
@@ -77,4 +79,7 @@ int				ft_validatemap(t_game *game);
 int				get_map_width(char **map);
 int				get_map_height(char **map);
 int				is_map_rectangular(char **map);
+
+void			ft_free(t_game *game, void **array);
+void			free_map(t_game *game);
 #endif
