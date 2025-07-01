@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025/06/27 16:43:09 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/01 10:46:30 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,11 @@ void	load_images2(t_game *game, int w, int h)
 	game->exit_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/exit/exit.xpm", &w, &h);
 }
 
-int	main(int ac, char **av)
+void	initiate_things(t_game *game)
 {
-	t_game	*game;
-	int		w;
-	int		h;
-	int		row;
-	int		col;
+	int	row;
+	int	col;
 
-	game = malloc(sizeof(t_game));
-	if(!game)
-		return(1);
-	if (ac != 2)
-		return(1);
-	game->map = read_map (av[1]);
-	if(!game->map)
-	{
-		printf("Error\n");
-		exit(1);
-	}
 	row = 0;
 	while(game->map[row])
 	{
@@ -85,10 +71,30 @@ int	main(int ac, char **av)
 	game->map_things.collectibles = 0;
 	game->map_things.exit = 0;
 	game->map_things.player = 0;
+}
+
+int	main(int ac, char **av)
+{
+	t_game	*game;
+	int		w;
+	int		h;
+
+	game = malloc(sizeof(t_game));
+	if(!game)
+		return(1);
+	if (ac != 2)
+		return(1);
+	game->map = read_map (av[1]);
+	if(!game->map)
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
+	initiate_things(game);
 	if (!ft_validatemap(game))
 	{
-		printf("Error\n");
-		exit(0);
+		write(2, "Error\n", 6);
+		exit(1);
 	}
 	game->mlx = mlx_init();
 	w = get_map_width(game->map) * 64;

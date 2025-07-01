@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 15:13:15 by adores            #+#    #+#             */
-/*   Updated: 2025/06/27 11:27:39 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/01 10:32:51 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ int	key_press(int keycode, t_game *game)
 
 	nx = game->cat_x;
 	ny = game->cat_y;
+	if (keycode == XK_Escape)
+	{
+		mlx_destroy_window(game->mlx, game->win);
+		exit(0);
+	}
 	if(!cat_direction(keycode, game, &nx, &ny))
 		return (0);
 	if (can_move(game, nx, ny))

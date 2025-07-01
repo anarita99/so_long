@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adores <adores@student.42lisboa.com>       #+#  +:+       +#+        */
+/*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-06-28 16:21:39 by adores            #+#    #+#             */
-/*   Updated: 2025-06-28 16:21:39 by adores           ###   ########.fr       */
+/*   Created: 2025/06/28 16:21:39 by adores            #+#    #+#             */
+/*   Updated: 2025/07/01 10:35:53 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,4 @@ int	is_map_rectangular(char **map)
 	}
 	return (1);
 }
+

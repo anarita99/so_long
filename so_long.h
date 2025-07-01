@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 13:32:21 by adores            #+#    #+#             */
-/*   Updated: 2025/06/27 16:38:34 by adores           ###   ########.fr       */
+/*   Updated: 2025/06/30 10:21:31 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define EVENT_KEY_RELEASE 3 */
 
 # include "get_next_line/get_next_line.h"
-# include "mlx/mlx.h"
+# include "mlx1/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 
