@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 13:32:21 by adores            #+#    #+#             */
-/*   Updated: 2025/07/01 16:02:25 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/02 14:09:06 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,17 @@ typedef struct s_game
 	char		**map;
 	int			moves;
 	t_cat_dir	cat_dir;
-	void		*idle_imgs[4];
-	void		*walk_right_imgs[4];
-	void		*walk_left_imgs[4];
-	void		*walk_up_imgs[4];
-	void		*walk_down_imgs[4];
-	void		*floor_img;
-	void		*wood_img;
-	void		*collectible_img;
+	void		*idle[4];
+	void		*walkr[4];
+	void		*walkl[4];
+	void		*walku[4];
+	void		*walkd[4];
+	void		*floor;
+	void		*wood;
+	void		*fish;
 	int			collectibles;
-	void		*exit_img;
+	void		*exit;
+	void		*exit2;
 	int			cat_x;
 	int			cat_y;
 	int			is_walking;

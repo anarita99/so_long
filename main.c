@@ -6,47 +6,55 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025/07/01 15:21:53 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/02 14:04:26 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-void	load_images(t_game *game, int w, int h)
+
+static int	load_images(t_game *game, int w, int h)
 {
-	game->idle_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle00.xpm", &w, &h);
-	game->idle_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle01.xpm", &w, &h);
-	game->idle_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle02.xpm", &w, &h);
-	game->idle_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/idle/idle03.xpm", &w, &h);
-
-	game->walk_right_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/walk0.xpm", &w, &h);
-	game->walk_right_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/walk1.xpm", &w, &h);
-	game->walk_right_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/walk2.xpm", &w, &h);
-	game->walk_right_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_right/walk3.xpm", &w, &h);
-
-	game->walk_left_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/walkl0.xpm", &w, &h);
-	game->walk_left_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/walkl1.xpm", &w, &h);
-	game->walk_left_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/walkl2.xpm", &w, &h);
-	game->walk_left_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_left/walkl3.xpm", &w, &h);
-
-	game->walk_down_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_down/walkd0.xpm", &w, &h);
-	game->walk_down_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_down/walkd1.xpm", &w, &h);
-	game->walk_down_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_down/walkd2.xpm", &w, &h);
-	game->walk_down_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_down/walkd3.xpm", &w, &h);
-
-	game->walk_up_imgs[0] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_up/walkup0.xpm", &w, &h);
-	game->walk_up_imgs[1] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_up/walkup1.xpm", &w, &h);
-	game->walk_up_imgs[2] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_up/walkup2.xpm", &w, &h);
-	game->walk_up_imgs[3] = mlx_xpm_file_to_image(game->mlx, "cats_sprite/walk_up/walkup3.xpm", &w, &h);
-
-	// if (!game->walk_up_imgs[0] || !game->walk_up_imgs[1] || !game->walk_up_imgs[2])
+	game->idle[0] = mlx_xpm_file_to_image(game->mlx, "img/idle00.xpm", &w, &h);
+	game->idle[1] = mlx_xpm_file_to_image(game->mlx, "img/idle01.xpm", &w, &h);
+	game->idle[2] = mlx_xpm_file_to_image(game->mlx, "img/idle02.xpm", &w, &h);
+	game->idle[3] = mlx_xpm_file_to_image(game->mlx, "img/idle03.xpm", &w, &h);
+	game->walkr[0] = mlx_xpm_file_to_image(game->mlx, "img/walk0.xpm", &w, &h);
+	game->walkr[1] = mlx_xpm_file_to_image(game->mlx, "img/walk1.xpm", &w, &h);
+	game->walkr[2] = mlx_xpm_file_to_image(game->mlx, "img/walk2.xpm", &w, &h);
+	game->walkr[3] = mlx_xpm_file_to_image(game->mlx, "img/walk3.xpm", &w, &h);
+	game->walkl[0] = mlx_xpm_file_to_image(game->mlx, "img/walkl0.xpm", &w, &h);
+	game->walkl[1] = mlx_xpm_file_to_image(game->mlx, "img/walkl1.xpm", &w, &h);
+	game->walkl[2] = mlx_xpm_file_to_image(game->mlx, "img/walkl2.xpm", &w, &h);
+	game->walkl[3] = mlx_xpm_file_to_image(game->mlx, "img/walkl3.xpm", &w, &h);
+	if (!game->idle[0] || !game->idle[1] || !game->idle[2] || !game->idle[3]
+		|| !game->walkr[0] || !game->walkr[1] || !game->walkr[2]
+		|| !game->walkr[3] || !game->walkl[0] || !game->walkl[1]
+		|| !game->walkl[2] || !game->walkl[3])
+		return (0);
+	return (1);
 }
 
-void	load_images2(t_game *game, int w, int h)
+static int	load_images2(t_game *game, int w, int h)
 {
-	game->floor_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/floor/grass.xpm", &w, &h);
-	game->collectible_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/fish/fish3.xpm", &w, &h);
-	game->wood_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/wall/wall.xpm", &w, &h);
-	game->exit_img = mlx_xpm_file_to_image(game->mlx, "cats_sprite/exit/exit.xpm", &w, &h);
+	game->walkd[0] = mlx_xpm_file_to_image(game->mlx, "img/walkd0.xpm", &w, &h);
+	game->walkd[1] = mlx_xpm_file_to_image(game->mlx, "img/walkd1.xpm", &w, &h);
+	game->walkd[2] = mlx_xpm_file_to_image(game->mlx, "img/walkd2.xpm", &w, &h);
+	game->walkd[3] = mlx_xpm_file_to_image(game->mlx, "img/walkd3.xpm", &w, &h);
+	game->walku[0] = mlx_xpm_file_to_image(game->mlx, "img/walku0.xpm", &w, &h);
+	game->walku[1] = mlx_xpm_file_to_image(game->mlx, "img/walku1.xpm", &w, &h);
+	game->walku[2] = mlx_xpm_file_to_image(game->mlx, "img/walku2.xpm", &w, &h);
+	game->walku[3] = mlx_xpm_file_to_image(game->mlx, "img/walku3.xpm", &w, &h);
+	game->floor = mlx_xpm_file_to_image(game->mlx, "img/grass.xpm", &w, &h);
+	game->fish = mlx_xpm_file_to_image(game->mlx, "img/fish3.xpm", &w, &h);
+	game->wood = mlx_xpm_file_to_image(game->mlx, "img/wall.xpm", &w, &h);
+	game->exit = mlx_xpm_file_to_image(game->mlx, "img/exit.xpm", &w, &h);
+	game->exit2 = mlx_xpm_file_to_image(game->mlx, "img/exit2.xpm", &w, &h);
+	if (!game->walkd[0] || !game->walkd[1] || !game->walkd[2] || !game->walkd[3]
+		|| !game->walku[0] || !game->walku[1] || !game->walku[2]
+		|| !game->walku[3] || !game->floor || !game->fish || !game->wood
+		|| !game->exit || game->exit2)
+		return (0);
+	return (1);
 }
 
 void	initiate_things(t_game *game)
@@ -55,12 +63,12 @@ void	initiate_things(t_game *game)
 	int	col;
 
 	row = 0;
-	while(game->map[row])
+	while (game->map[row])
 	{
 		col = 0;
-		while(game->map[row][col])
+		while (game->map[row][col])
 		{
-			if(game->map[row][col] == 'P')
+			if (game->map[row][col] == 'P')
 			{
 				game->cat_x = col;
 				game->cat_y = row;
@@ -75,7 +83,7 @@ void	initiate_things(t_game *game)
 	game->map_things.player = 0;
 }
 
-void	ft_error()
+void	ft_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);
@@ -88,12 +96,12 @@ int	main(int ac, char **av)
 	int		h;
 
 	game = malloc(sizeof(t_game));
-	if(!game)
-		return(1);
+	if (!game)
+		return (1);
 	if (ac != 2)
-		return(1);
+		return (1);
 	game->map = read_map (av[1]);
-	if(!game->map)
+	if (!game->map)
 		ft_error();
 	initiate_things(game);
 	if (!ft_validatemap(game))
@@ -102,8 +110,8 @@ int	main(int ac, char **av)
 	w = get_map_width(game->map) * 64;
 	h = get_map_height(game->map) * 64;
 	game->win = mlx_new_window(game->mlx, w, h, "so_long");
-	load_images(game, w, h);
-	load_images2(game, w, h);
+	load_images(game, w, h); // if not
+	load_images2(game, w, h); /// if not
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
 	mlx_hook(game->win, DestroyNotify, 0, destroy, game);
 	mlx_loop_hook(game->mlx, animate_cat, game);

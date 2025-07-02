@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 16:54:24 by adores            #+#    #+#             */
-/*   Updated: 2025/07/01 11:11:29 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/02 14:14:49 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,15 @@ void	draw_map(t_game *game)
 		col = 0;
 		while(game->map[row][col])
 		{
-			mlx_put_image_to_window(game->mlx, game->win, game->floor_img, col *tile_size, row *tile_size);
+			mlx_put_image_to_window(game->mlx, game->win, game->floor, col *tile_size, row *tile_size);
 			if (game->map[row][col] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, game->collectible_img, col * tile_size, row * tile_size);
+				mlx_put_image_to_window(game->mlx, game->win, game->fish, col * tile_size, row * tile_size);
 			else if (game->map[row][col] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->wood_img, col *tile_size, row *tile_size);
+				mlx_put_image_to_window(game->mlx, game->win, game->wood, col *tile_size, row *tile_size);
 			else if (game->map[row][col] == 'E')
 			{
 				if (game->collectibles == 0)
-					mlx_put_image_to_window(game->mlx, game->win, game->exit_img, col *tile_size, row *tile_size);
+					mlx_put_image_to_window(game->mlx, game->win, game->exit, col *tile_size, row *tile_size);
 			}
 			col++;
 		}

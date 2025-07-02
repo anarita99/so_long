@@ -6,12 +6,32 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:28:51 by adores            #+#    #+#             */
-/*   Updated: 2025/07/01 14:29:23 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/02 10:44:54 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+static	int count_rows(char **map)
+{
+	int	rows;
+
+	rows = 0;
+	while(map[rows])
+		rows++;
+	return (rows);
+}
+static int	count_cols(char **map)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	i = 0;
+	while(map[i][j])
+		j++;
+	return(j);
+}
 char	**copy_map(char **map)
 {
 	int		rows;
@@ -20,28 +40,21 @@ char	**copy_map(char **map)
 	int		i;
 	int		j;
 
-	while(map[rows])
-		rows++;
+	rows = count_rows(map);
 	copy = malloc(sizeof(char *) * (rows + 1));
 	if(!copy)
 		return (NULL);
 	i = 0;
-	cols = 0;
 	while(i < rows)
 	{
-		while(map[i][cols])
-			cols++;
+		cols = count_cols(map);
 		copy[i] = malloc(sizeof(char) * (cols + 1));
 		if(!copy[i])
 			return (NULL);
-		j = 0;
-		while(j < cols)
-		{
+		j = -1;
+		while(++j < cols)
 			copy[i][j] = map[i][j];
-			j++;
-		}
-		copy[i][j] = '\0';
-		i++;
+		copy[i++][j] = '\0';
 	}
 	copy[i] = NULL;
 	return (copy);

@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:56:46 by adores            #+#    #+#             */
-/*   Updated: 2025/07/01 15:57:34 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/02 14:34:21 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	destroy(t_game *game)
 {
-	ft_free(game, game->idle_imgs);
-	ft_free(game, game->walk_right_imgs);
-	ft_free(game, game->walk_left_imgs);
-	ft_free(game, game->walk_down_imgs);
-	ft_free(game, game->walk_up_imgs);
-	mlx_destroy_image(game->mlx, game->floor_img);
-	mlx_destroy_image(game->mlx, game->collectible_img);
-	mlx_destroy_image(game->mlx, game->wood_img);
-	mlx_destroy_image(game->mlx, game->exit_img);
+	ft_free(game, game->idle);
+	ft_free(game, game->walkr);
+	ft_free(game, game->walkl);
+	ft_free(game, game->walkd);
+	ft_free(game, game->walku);
+	mlx_destroy_image(game->mlx, game->floor);
+	mlx_destroy_image(game->mlx, game->fish);
+	mlx_destroy_image(game->mlx, game->wood);
+	mlx_destroy_image(game->mlx, game->exit);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free_map(game);

@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:11:49 by adores            #+#    #+#             */
-/*   Updated: 2025/07/01 11:36:44 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/02 14:28:15 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,27 @@ int	check_walls(char **map)
 		return (0);
 	return (1);
 }
+static int	counts(t_map *things, char position, int *collectibles)
+{
+	if(position == 'P')
+	{
+		things->player++;
+		if(things->player != 1)
+			return (0);
+	}
+	else if (position == 'E')
+	{
+		things->exit++;
+		if (things->exit != 1)
+			return (0);
+	}
+	else if(position == 'C')
+	{
+		things->collectibles++;
+		*collectibles += 1;
+	}
+	return (1);
+}
 
 int	count_elements(t_map *things, char **map, int *collectibles)
 {
@@ -71,33 +92,11 @@ int	count_elements(t_map *things, char **map, int *collectibles)
 		col = 0;
 		while(map[row][col])
 		{
-			if(map[row][col] == 'P')
-			{
-				things->player++;
-				if(things->player != 1)
-					return (0);
-			}
-			else if (map[row][col] == 'E')
-			{
-				things->exit++;
-				if (things->exit != 1)
-					return (0);
-			}
-			else if(map[row][col] == 'C')
-			{
-				things->collectibles++;
-				*collectibles += 1;
-			}
+			if(!counts(things, map[row][col], collectibles))
+				return (0);
 			col++;
 		}
 		row++;	
 	}
-	return (1);
-}
-
-int	ft_validatemap(t_game *game)
-{
-	if(!check_walls(game->map) || !is_map_rectangular(game->map) || !count_elements(&game->map_things, game->map, &game->collectibles))
-		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 15:13:15 by adores            #+#    #+#             */
-/*   Updated: 2025/07/01 16:54:15 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/02 14:10:12 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,7 @@ int	key_press(int keycode, t_game *game)
 	nx = game->cat_x;
 	ny = game->cat_y;
 	if (keycode == XK_Escape)
-	{
 		destroy(game);
-	}
 	if(!cat_direction(keycode, game, &nx, &ny))
 		return (0);
 	if (can_move(game, nx, ny))
@@ -91,11 +89,9 @@ int	key_press(int keycode, t_game *game)
 		ft_printf("Moves: %d\n", game->moves);
 		if (game->map[game->cat_y][game->cat_x] == 'E' && game->collectibles == 0)
 		{
-			int i = 0;
-
-			//animate_cat(game);
-			while (i < 600000000)
-				i++;
+			game->map[game->cat_y][game->cat_x] = 'X';
+			game->walk_timer = 0;
+			animate_cat(game);
 			write(1, "YOU WON!\n", 9);
 			destroy(game);
 		}
