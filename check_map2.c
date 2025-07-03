@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:21:39 by adores            #+#    #+#             */
-/*   Updated: 2025/07/02 14:48:32 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/03 11:14:30 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,53 @@ static int	is_map_rectangular(char **map)
 	return (1);
 }
 
-int	ft_validatemap(t_game *game)
+void	flood_fill(char **map_copy, int x, int y)
 {
-	if(!check_walls(game->map) || !is_map_rectangular(game->map) || !count_elements(&game->map_things, game->map, &game->collectibles))
-		return (0);
+	if (map_copy[y][x] == '1' || map_copy[y][x] == 'F')
+		return ;
+	if (map_copy[y][x] == '0' || map_copy[y][x] == 'P' || map_copy[y][x] == 'E'
+		|| map_copy[y][x] == 'C')
+		map_copy[y][x] = 'F';
+	flood_fill(map_copy, x + 1, y);
+	flood_fill(map_copy, x - 1, y);
+	flood_fill(map_copy, x, y + 1);
+	flood_fill(map_copy, x, y - 1);
+}
+
+int	all_reachable(char **map_copy)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (map_copy[y])
+	{
+		x = 0;
+		while (map_copy[y][x])
+		{
+			if (map_copy[y][x] == 'C' || map_copy[y][x] == 'E')
+				return (0);
+			x++;
+		}
+		y++;
+	}
 	return (1);
 }
 
-void	flood_fill(char **map, int x, int y)
+int	ft_validatemap(t_game *game)
 {
-	if (map[y][x] == '1' || map[y][x] == 'F')
-		return ;
-	if (map[y][x] == '0' || map[y][x] == 'P' || map[y][x] == 'E'
-		|| map[y][x] == 'C')
-		map[y][x] = 'F';
-	flood_fill(map, x + 1, y);
-	flood_fill(map, x - 1, y);
-	flood_fill(map, x, y + 1);
-	flood_fill(map, x, y - 1);
+	char	**map_copy;
+
+	map_copy = copy_map(game->map);
+	if(!check_walls(game->map) || !is_map_rectangular(game->map)
+		|| !count_elements(&game->map_things, game->map, &game->collectibles))
+		return (0);
+	flood_fill(map_copy, game->cat_x, game->cat_y);
+	if(!all_reachable(map_copy))
+	{
+		free_map(map_copy);
+		return (0);
+	}
+	free(map_copy);
+	return (1);
 }

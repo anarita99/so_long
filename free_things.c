@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:56:46 by adores            #+#    #+#             */
-/*   Updated: 2025/07/02 14:34:21 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/03 11:01:27 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	destroy(t_game *game)
 	mlx_destroy_image(game->mlx, game->exit);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
-	free_map(game);
+	free_map(game->map);
 	free(game->mlx);
 	free(game);
 	exit(0);
@@ -41,12 +41,12 @@ void	ft_free(t_game *game, void **array)
 	}
 }
 
-void	free_map(t_game *game)
+void	free_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	while (game->map[i])
-		free(game->map[i++]);
-	free(game->map);
+	while (map[i])
+		free(map[i++]);
+	free(map);
 }
