@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025/07/02 14:04:26 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/03 14:32:50 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,15 @@ static int	load_images2(t_game *game, int w, int h)
 	game->fish = mlx_xpm_file_to_image(game->mlx, "img/fish3.xpm", &w, &h);
 	game->wood = mlx_xpm_file_to_image(game->mlx, "img/wall.xpm", &w, &h);
 	game->exit = mlx_xpm_file_to_image(game->mlx, "img/exit.xpm", &w, &h);
-	game->exit2 = mlx_xpm_file_to_image(game->mlx, "img/exit2.xpm", &w, &h);
 	if (!game->walkd[0] || !game->walkd[1] || !game->walkd[2] || !game->walkd[3]
 		|| !game->walku[0] || !game->walku[1] || !game->walku[2]
 		|| !game->walku[3] || !game->floor || !game->fish || !game->wood
-		|| !game->exit || game->exit2)
+		|| !game->exit)
 		return (0);
 	return (1);
 }
 
-void	initiate_things(t_game *game)
+static void	initiate_things(t_game *game)
 {
 	int	row;
 	int	col;
@@ -83,7 +82,7 @@ void	initiate_things(t_game *game)
 	game->map_things.player = 0;
 }
 
-void	ft_error(void)
+static void	ft_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);
@@ -96,9 +95,7 @@ int	main(int ac, char **av)
 	int		h;
 
 	game = malloc(sizeof(t_game));
-	if (!game)
-		return (1);
-	if (ac != 2)
+	if (!game || ac != 2)
 		return (1);
 	game->map = read_map (av[1]);
 	if (!game->map)
@@ -107,11 +104,11 @@ int	main(int ac, char **av)
 	if (!ft_validatemap(game))
 		ft_error();
 	game->mlx = mlx_init();
-	w = get_map_width(game->map) * 64;
-	h = get_map_height(game->map) * 64;
+	w = get_map_width(game->map) * SPRITE;
+	h = get_map_height(game->map) * SPRITE;
 	game->win = mlx_new_window(game->mlx, w, h, "so_long");
-	load_images(game, w, h); // if not
-	load_images2(game, w, h); /// if not
+	if (!load_images(game, w, h) || !load_images2(game, w, h))
+		return (1);
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
 	mlx_hook(game->win, DestroyNotify, 0, destroy, game);
 	mlx_loop_hook(game->mlx, animate_cat, game);

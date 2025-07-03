@@ -6,13 +6,13 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:03:58 by adores            #+#    #+#             */
-/*   Updated: 2025/07/02 16:29:38 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/03 14:32:28 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void draw_cat_sprite(t_game *game, int f, int x, int y)
+static void	draw_cat_sprite(t_game *game, int f, int x, int y)
 {
 	if (game->walk_timer > 0)
 	{
@@ -26,23 +26,19 @@ static void draw_cat_sprite(t_game *game, int f, int x, int y)
 			mlx_put_image_to_window(game->mlx, game->win, game->walku[f], x, y);
 		game->walk_timer--;
 	}
-	else if (game->map[game->cat_y][game->cat_x] == 'X')
-		mlx_put_image_to_window(game->mlx, game->win, game->exit2, x, y);
 	else
 		mlx_put_image_to_window(game->mlx, game->win, game->idle[f], x, y);
 }
 
 int	animate_cat(t_game *game)
 {
-	int			tile_size;
 	static int	f;
 	static int	counter;
 	int			x;
 	int			y;
 
-	tile_size = 64;
-	x = game->cat_x * tile_size;
-	y = game->cat_y * tile_size;
+	x = game->cat_x * SPRITE;
+	y = game->cat_y * SPRITE;
 	mlx_clear_window(game->mlx, game->win);
 	draw_map(game);
 	draw_cat_sprite(game, f, x, y);

@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 13:32:21 by adores            #+#    #+#             */
-/*   Updated: 2025/07/03 11:11:34 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/03 14:54:05 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,13 @@
 
 # define SO_LONG_H
 
-/* #define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_ESC 65307
-
-# define EVENT_KEY_PRESS 2
-# define EVENT_KEY_RELEASE 3 */
-
 # include "get_next_line/get_next_line.h"
 # include "ft_printf/ft_printf.h"
 # include "mlx1/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 
+# define SPRITE 64
 
 typedef enum s_cat_dir
 {
@@ -42,9 +34,8 @@ typedef struct s_map
 {
 	int	player;
 	int	exit;
-	int collectibles;
+	int	collectibles;
 }		t_map;
-
 
 typedef struct s_game
 {
@@ -79,8 +70,6 @@ int				destroy(t_game *game);
 int				ft_validatemap(t_game *game);
 int				get_map_width(char **map);
 int				get_map_height(char **map);
-void			flood_fill(char **map, int x, int y);
-void			ft_free(t_game *game, void **array);
 char			**copy_map(char **map);
 void			free_map(char **map);
 int				count_elements(t_map *things, char **map, int *collectibles);

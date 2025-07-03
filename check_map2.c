@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:21:39 by adores            #+#    #+#             */
-/*   Updated: 2025/07/03 11:14:30 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/03 13:55:25 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int	is_map_rectangular(char **map)
 
 	row = 0;
 	width = get_map_width(map);
-	while(map[row])
+	while (map[row])
 	{
 		col = 0;
-		while(map[row][col] && map[row][col] != '\n')
+		while (map[row][col] && map[row][col] != '\n')
 			col++;
 		if (col != width)
 			return (0);
@@ -32,7 +32,7 @@ static int	is_map_rectangular(char **map)
 	return (1);
 }
 
-void	flood_fill(char **map_copy, int x, int y)
+static void	flood_fill(char **map_copy, int x, int y)
 {
 	if (map_copy[y][x] == '1' || map_copy[y][x] == 'F')
 		return ;
@@ -45,7 +45,7 @@ void	flood_fill(char **map_copy, int x, int y)
 	flood_fill(map_copy, x, y - 1);
 }
 
-int	all_reachable(char **map_copy)
+static int	all_reachable(char **map_copy)
 {
 	int	x;
 	int	y;
@@ -70,11 +70,11 @@ int	ft_validatemap(t_game *game)
 	char	**map_copy;
 
 	map_copy = copy_map(game->map);
-	if(!check_walls(game->map) || !is_map_rectangular(game->map)
+	if (!check_walls(game->map) || !is_map_rectangular(game->map)
 		|| !count_elements(&game->map_things, game->map, &game->collectibles))
 		return (0);
 	flood_fill(map_copy, game->cat_x, game->cat_y);
-	if(!all_reachable(map_copy))
+	if (!all_reachable(map_copy))
 	{
 		free_map(map_copy);
 		return (0);

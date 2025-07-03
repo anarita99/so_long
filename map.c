@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 16:54:24 by adores            #+#    #+#             */
-/*   Updated: 2025/07/02 14:14:49 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/03 14:39:31 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 static int	count_lines(const char *filename)
 {
-	int	fd;
-	int	count;
-	char *line;
+	int		fd;
+	int		count;
+	char	*line;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (-1);
 	count = 0;
-	while((line = get_next_line(fd)))
+	line = "start";
+	while (line)
 	{
+		line = get_next_line(fd);
 		count++;
 		free(line);
 	}
 	close(fd);
-	return(count);
+	return (count);
 }
 
 char	**read_map(const char *filename)
@@ -49,8 +51,12 @@ char	**read_map(const char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (free(map), NULL);
-	while((line = get_next_line(fd)))
+	line = "start";
+	while (line)
+	{
+		line = get_next_line(fd);
 		map[i++] = line;
+	}
 	map[i] = NULL;
 	close(fd);
 	return (map);
@@ -58,30 +64,30 @@ char	**read_map(const char *filename)
 
 void	draw_map(t_game *game)
 {
-	int	row;
-	int	col;
-	int	tile_size;
+	int	y;
+	int	x;
 
-	row = 0;
-	tile_size = 64;
-	while(game->map[row])
+	y = -1;
+	while (game->map[++y])
 	{
-		col = 0;
-		while(game->map[row][col])
+		x = -1;
+		while (game->map[y][++x])
 		{
-			mlx_put_image_to_window(game->mlx, game->win, game->floor, col *tile_size, row *tile_size);
-			if (game->map[row][col] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, game->fish, col * tile_size, row * tile_size);
-			else if (game->map[row][col] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->wood, col *tile_size, row *tile_size);
-			else if (game->map[row][col] == 'E')
+			mlx_put_image_to_window(game->mlx, game->win, \
+				game->floor, x * SPRITE, y * SPRITE);
+			if (game->map[y][x] == 'C')
+				mlx_put_image_to_window(game->mlx, game->win, \
+					game->fish, x * SPRITE, y * SPRITE);
+			else if (game->map[y][x] == '1')
+				mlx_put_image_to_window(game->mlx, game->win, \
+					game->wood, x * SPRITE, y * SPRITE);
+			else if (game->map[y][x] == 'E')
 			{
 				if (game->collectibles == 0)
-					mlx_put_image_to_window(game->mlx, game->win, game->exit, col *tile_size, row *tile_size);
+					mlx_put_image_to_window(game->mlx, game->win, \
+						game->exit, x * SPRITE, y * SPRITE);
 			}
-			col++;
 		}
-		row++;
 	}
 }
 
@@ -90,7 +96,7 @@ int	get_map_width(char **map)
 	int	width;
 
 	width = 0;
-	while(map[0][width] && map[0][width] != '\n')
+	while (map[0][width] && map[0][width] != '\n')
 		width++;
 	return (width);
 }
@@ -100,7 +106,7 @@ int	get_map_height(char **map)
 	int	height;
 
 	height = 0;
-	while(map[height])
+	while (map[height])
 		height++;
 	return (height);
 }
