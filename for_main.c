@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025/07/04 11:53:06 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/04 13:44:35 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,14 @@ int	start_mlx(t_game *game)
 	int	h;
 
 	game->mlx = mlx_init();
-	if(!game->mlx)
-		return(0);
+	if (!game->mlx)
+		return (0);
 	w = get_map_width(game->map) * SPRITE;
 	h = get_map_height(game->map) * SPRITE;
 	game->win = mlx_new_window(game->mlx, w, h, "so_long");
-	if(!game->win)
-		return(0);
+	if (!game->win)
+		return (0);
 	if (!load_images(game, w, h) || !load_images2(game, w, h))
 		return (0);
 	return (1);
 }
-

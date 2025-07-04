@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:10:12 by adores            #+#    #+#             */
-/*   Updated: 2025/07/04 11:53:24 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/04 13:45:12 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	initiate_things(game);
 	if (!ft_validatemap(game))
 		ft_error();
-	if(!start_mlx(game))
+	if (!start_mlx(game))
 	{
 		destroy(game);
 		return (1);
