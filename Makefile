@@ -12,7 +12,7 @@
 
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Imlx
+CFLAGS = -Wall -Wextra -Werror -Imlx -g
 
 MLX = -Lmlx1 -lmlx_Linux -lXext -lX11 -lm
 
@@ -22,7 +22,8 @@ PRINTF = ft_printf/ft_printstr.c ft_printf/ft_hexaputnbr.c \
 	ft_printf/ft_printchar.c ft_printf/ft_printf.c \
 	ft_printf/ft_printnbr.c ft_printf/ft_unsputnbr.c ft_printf/ft_printp.c
 
-SRC = main.c cat.c keys.c map.c check_map.c check_map2.c free_things.c copy_map.c $(GNL_SRC) $(PRINTF)
+SRC = cat.c keys.c map.c check_map.c check_map2.c free_things.c \
+	copy_map.c for_main.c so_long.c $(GNL_SRC) $(PRINTF)
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   for_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025/07/03 14:32:50 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/04 10:58:48 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	load_images(t_game *game, int w, int h)
+int	load_images(t_game *game, int w, int h)
 {
 	game->idle[0] = mlx_xpm_file_to_image(game->mlx, "img/idle00.xpm", &w, &h);
 	game->idle[1] = mlx_xpm_file_to_image(game->mlx, "img/idle01.xpm", &w, &h);
@@ -34,7 +34,7 @@ static int	load_images(t_game *game, int w, int h)
 	return (1);
 }
 
-static int	load_images2(t_game *game, int w, int h)
+int	load_images2(t_game *game, int w, int h)
 {
 	game->walkd[0] = mlx_xpm_file_to_image(game->mlx, "img/walkd0.xpm", &w, &h);
 	game->walkd[1] = mlx_xpm_file_to_image(game->mlx, "img/walkd1.xpm", &w, &h);
@@ -56,13 +56,13 @@ static int	load_images2(t_game *game, int w, int h)
 	return (1);
 }
 
-static void	initiate_things(t_game *game)
+void	initiate_things(t_game *game)
 {
 	int	row;
 	int	col;
 
-	row = 0;
-	while (game->map[row])
+	row = -1;
+	while (game->map[++row])
 	{
 		col = 0;
 		while (game->map[row][col])
@@ -74,44 +74,42 @@ static void	initiate_things(t_game *game)
 			}
 			col++;
 		}
-		row++;
 	}
 	game->is_walking = 0;
 	game->map_things.collectibles = 0;
+	game->collectibles = 0;
 	game->map_things.exit = 0;
 	game->map_things.player = 0;
+	game->moves = 0;
+	game->walk_timer = 4500;
+	game->cat_dir = CAT_RIGHT;
 }
 
-static void	ft_error(void)
+void	ft_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);
 }
 
-int	main(int ac, char **av)
+int	start_mlx(t_game *game)
 {
-	t_game	*game;
-	int		w;
-	int		h;
+	int	w;
+	int	h;
 
-	game = malloc(sizeof(t_game));
-	if (!game || ac != 2)
-		return (1);
-	game->map = read_map (av[1]);
-	if (!game->map)
-		ft_error();
-	initiate_things(game);
-	if (!ft_validatemap(game))
-		ft_error();
 	game->mlx = mlx_init();
+	if(!game->mlx)
+		return(0);
 	w = get_map_width(game->map) * SPRITE;
 	h = get_map_height(game->map) * SPRITE;
 	game->win = mlx_new_window(game->mlx, w, h, "so_long");
+	if(!game->win)
+		return(0);
 	if (!load_images(game, w, h) || !load_images2(game, w, h))
-		return (1);
+		return (0);
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
 	mlx_hook(game->win, DestroyNotify, 0, destroy, game);
 	mlx_loop_hook(game->mlx, animate_cat, game);
 	mlx_loop(game->mlx);
-	return (0);
+	return (1);
 }
+

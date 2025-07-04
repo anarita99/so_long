@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:21:39 by adores            #+#    #+#             */
-/*   Updated: 2025/07/03 13:55:25 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/03 16:15:30 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ int	ft_validatemap(t_game *game)
 		free_map(map_copy);
 		return (0);
 	}
-	free(map_copy);
+	free_map(map_copy);
 	return (1);
 }
