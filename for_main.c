@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025/07/04 11:07:39 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/04 11:53:06 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,6 @@ int	start_mlx(t_game *game)
 		return(0);
 	if (!load_images(game, w, h) || !load_images2(game, w, h))
 		return (0);
-	mlx_hook(game->win, KeyPress, KeyPressMask, key_press, game);
-	mlx_hook(game->win, DestroyNotify, 0, destroy, game);
-	mlx_loop_hook(game->mlx, animate_cat, game);
-	mlx_loop(game->mlx);
 	return (1);
 }
 
