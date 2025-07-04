@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 16:54:24 by adores            #+#    #+#             */
-/*   Updated: 2025/07/03 14:39:31 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/04 11:06:59 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	draw_map(t_game *game)
 					game->wood, x * SPRITE, y * SPRITE);
 			else if (game->map[y][x] == 'E')
 			{
-				if (game->collectibles == 0)
+				if (game->fishes == 0)
 					mlx_put_image_to_window(game->mlx, game->win, \
 						game->exit, x * SPRITE, y * SPRITE);
 			}

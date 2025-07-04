@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:56:46 by adores            #+#    #+#             */
-/*   Updated: 2025/07/04 10:56:00 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/04 11:02:02 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static void	free_img(t_game *game)
 
 int	destroy(t_game *game)
 {
-	if(!game)
+	if (!game)
 		exit(0);
-	if(game->mlx)
+	if (game->mlx)
 	{
 		ft_free(game, game->idle);
 		ft_free(game, game->walkr);
@@ -64,7 +64,7 @@ int	destroy(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-	if(game->map)
+	if (game->map)
 		free_map(game->map);
 	free(game);
 	exit(0);

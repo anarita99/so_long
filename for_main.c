@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025/07/04 10:58:48 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/04 11:07:39 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	initiate_things(t_game *game)
 	}
 	game->is_walking = 0;
 	game->map_things.collectibles = 0;
-	game->collectibles = 0;
+	game->fishes = 0;
 	game->map_things.exit = 0;
 	game->map_things.player = 0;
 	game->moves = 0;

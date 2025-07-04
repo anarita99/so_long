@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:21:39 by adores            #+#    #+#             */
-/*   Updated: 2025/07/03 16:15:30 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/04 11:08:20 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_validatemap(t_game *game)
 
 	map_copy = copy_map(game->map);
 	if (!check_walls(game->map) || !is_map_rectangular(game->map)
-		|| !count_elements(&game->map_things, game->map, &game->collectibles))
+		|| !count_elements(&game->map_things, game->map, &game->fishes))
 		return (0);
 	flood_fill(map_copy, game->cat_x, game->cat_y);
 	if (!all_reachable(map_copy))

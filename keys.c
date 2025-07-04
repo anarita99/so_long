@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 15:13:15 by adores            #+#    #+#             */
-/*   Updated: 2025/07/03 16:25:03 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/04 11:07:24 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	collect_fish(t_game *game)
 	if (game->map[game->cat_y][game->cat_x] == 'C')
 	{
 		game->map[game->cat_y][game->cat_x] = '0';
-		game->collectibles--;
+		game->fishes--;
 	}
 }
 
@@ -88,7 +88,7 @@ int	key_press(int keycode, t_game *game)
 		collect_fish(game);
 		ft_printf("Moves: %d\n", game->moves);
 		if (game->map[game->cat_y][game->cat_x] == 'E'
-			&& game->collectibles == 0)
+			&& game->fishes == 0)
 		{
 			write(1, "YOU WON!\n", 9);
 			destroy(game);
