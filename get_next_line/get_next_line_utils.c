@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adores <adores@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 12:13:46 by adores            #+#    #+#             */
-/*   Updated: 2025/05/08 15:31:37 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/07 11:19:03 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_bufferreset(char *buffer)
 	i = 0;
 	j = 0;
 	flag = 0;
-	while (buffer[i])
+	while (i < BUFFER_SIZE)
 	{
 		if (flag == 1)
 			buffer[j++] = buffer[i];
