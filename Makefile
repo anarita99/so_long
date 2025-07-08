@@ -12,7 +12,7 @@
 
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Imlx -g -fsanitize=address,undefined
+CFLAGS = -Wall -Wextra -Werror -Imlx -g
 
 MLX = -Lmlx1 -lmlx_Linux -lXext -lX11 -lm
 

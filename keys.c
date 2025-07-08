@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 15:13:15 by adores            #+#    #+#             */
-/*   Updated: 2025/07/04 11:07:24 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/08 15:06:36 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,15 @@ static void	collect_fish(t_game *game)
 	}
 }
 
+static void	set_stuff(t_game *game, int nx, int ny)
+{
+	game->map[game->cat_y][game->cat_x] = '0';
+	game->cat_x = nx;
+	game->cat_y = ny;
+	game->moves++;
+	game->walk_timer = 4500;
+}
+
 int	key_press(int keycode, t_game *game)
 {
 	int	nx;
@@ -81,18 +90,15 @@ int	key_press(int keycode, t_game *game)
 		return (0);
 	if (can_move(game, nx, ny))
 	{
-		game->cat_x = nx;
-		game->cat_y = ny;
-		game->moves++;
-		game->walk_timer = 4500;
+		set_stuff(game, nx, ny);
 		collect_fish(game);
 		ft_printf("Moves: %d\n", game->moves);
-		if (game->map[game->cat_y][game->cat_x] == 'E'
-			&& game->fishes == 0)
+		if (game->map[game->cat_y][game->cat_x] == 'E' && game->fishes == 0)
 		{
 			write(1, "YOU WON!\n", 9);
 			destroy(game);
 		}
+		game->map[ny][nx] = 'P';
 	}
 	return (0);
 }

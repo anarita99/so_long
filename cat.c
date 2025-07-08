@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:03:58 by adores            #+#    #+#             */
-/*   Updated: 2025/07/07 10:58:00 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/08 11:40:06 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	animate_cat(t_game *game)
 
 	x = game->cat_x * SPRITE;
 	y = game->cat_y * SPRITE;
-	mlx_clear_window(game->mlx, game->win);
 	draw_map(game);
 	draw_cat_sprite(game, f, x, y);
 	counter++;

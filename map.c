@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 16:54:24 by adores            #+#    #+#             */
-/*   Updated: 2025/07/07 11:44:17 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/08 15:42:19 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,20 @@ void	draw_map(t_game *game)
 		x = -1;
 		while (game->map[y][++x])
 		{
-			mlx_put_image_to_window(game->mlx, game->win, \
-				game->floor, x * SPRITE, y * SPRITE);
 			if (game->map[y][x] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, \
-					game->fish, x * SPRITE, y * SPRITE);
+				mlx_put_image_to_window(game->mlx, game->win, game->fish, x
+					* SPRITE, y * SPRITE);
 			else if (game->map[y][x] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, \
-					game->wood, x * SPRITE, y * SPRITE);
-			else if (game->map[y][x] == 'E')
+				mlx_put_image_to_window(game->mlx, game->win, game->wood, x
+					* SPRITE, y * SPRITE);
+			else if (game->map[y][x] == 'E' && game->fishes == 0)
 			{
-				if (game->fishes == 0)
-					mlx_put_image_to_window(game->mlx, game->win, \
-						game->exit, x * SPRITE, y * SPRITE);
+				mlx_put_image_to_window(game->mlx, game->win, game->exit, x
+					* SPRITE, y * SPRITE);
 			}
+			else if (game->map[y][x] != 'P')
+				mlx_put_image_to_window(game->mlx, game->win, game->floor, x
+					* SPRITE, y * SPRITE);
 		}
 	}
 }
