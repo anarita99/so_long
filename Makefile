@@ -33,13 +33,15 @@ SRC = cat.c keys.c map.c check_map.c check_map2.c free_things.c \
 OBJ = $(SRC:.c=.o)
 
 all: $(MLX_DIR)/libmlx_Linux.a $(NAME)
-	if [ ! -d "$(MLX_DIR)" ];
-		then git clone $(REPO) $(MLX_DIR);
+
+$(MLX_DIR)/libmlx_Linux.a:
+	if [ ! -d "$(MLX_DIR)" ]; then \
+		git clone $(REPO) $(MLX_DIR); \
 	fi
 	$(MAKE) -C $(MLX_DIR)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(MLX_LIB) -o $(NAME)
 
 clean:
 	rm -f $(OBJ)
