@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 15:13:15 by adores            #+#    #+#             */
-/*   Updated: 2025/07/08 15:06:36 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/09 12:58:20 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ static void	collect_fish(t_game *game)
 	{
 		game->map[game->cat_y][game->cat_x] = '0';
 		game->fishes--;
+	}
+	if (game->fishes == 0)
+	{
+		game->map[game->exit_y][game->exit_x] = 'E';
 	}
 }
 

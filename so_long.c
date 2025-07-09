@@ -6,11 +6,29 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:10:12 by adores            #+#    #+#             */
-/*   Updated: 2025/07/04 13:45:12 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/09 14:26:48 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static int	start_mlx(t_game *game)
+{
+	int	w;
+	int	h;
+
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		return (0);
+	w = get_map_width(game->map) * SPRITE;
+	h = get_map_height(game->map) * SPRITE;
+	game->win = mlx_new_window(game->mlx, w, h, "so_long");
+	if (!game->win)
+		return (0);
+	if (!load_images(game, w, h) || !load_images2(game, w, h))
+		return (0);
+	return (1);
+}
 
 int	main(int ac, char **av)
 {
@@ -23,6 +41,7 @@ int	main(int ac, char **av)
 	if (!game->map)
 		ft_error();
 	initiate_things(game);
+	initiate_things2(game);
 	if (!ft_validatemap(game))
 		ft_error();
 	if (!start_mlx(game))

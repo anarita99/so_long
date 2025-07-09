@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025/07/08 10:41:26 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/09 14:31:07 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,18 @@ void	initiate_things(t_game *game)
 				game->cat_x = col;
 				game->cat_y = row;
 			}
+			else if (game->map[row][col] == 'E')
+			{
+				game->exit_x = col;
+				game->exit_y = row;
+			}
 			col++;
 		}
 	}
+}
+
+void	initiate_things2(t_game *game)
+{
 	game->is_walking = 0;
 	game->map_things.collectibles = 0;
 	game->fishes = 0;
@@ -89,22 +98,4 @@ void	ft_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);
-}
-
-int	start_mlx(t_game *game)
-{
-	int	w;
-	int	h;
-
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		return (0);
-	w = get_map_width(game->map) * SPRITE;
-	h = get_map_height(game->map) * SPRITE;
-	game->win = mlx_new_window(game->mlx, w, h, "so_long");
-	if (!game->win)
-		return (0);
-	if (!load_images(game, w, h) || !load_images2(game, w, h))
-		return (0);
-	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 13:32:21 by adores            #+#    #+#             */
-/*   Updated: 2025/07/09 11:35:26 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/09 14:28:24 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_game
 	void		*exit;
 	int			cat_x;
 	int			cat_y;
+	int			exit_x;
+	int			exit_y;
 	int			is_walking;
 	int			walk_timer;
 	t_map		map_things;
@@ -64,7 +66,7 @@ typedef struct s_game
 int				load_images(t_game *game, int w, int h);
 int				load_images2(t_game *game, int w, int h);
 void			initiate_things(t_game *game);
-int				start_mlx(t_game *game);
+void			initiate_things2(t_game *game);
 void			ft_error(void);
 char			**read_map(const char *filename);
 void			draw_map(t_game *game);
