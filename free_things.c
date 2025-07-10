@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:56:46 by adores            #+#    #+#             */
-/*   Updated: 2025/07/04 11:02:02 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/10 15:10:41 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,11 @@ int	destroy(t_game *game)
 		free_map(game->map);
 	free(game);
 	exit(0);
+}
+
+void	destroy_map(t_game *game)
+{
+	if (game->map)
+		free_map(game->map);
+	free(game);
 }

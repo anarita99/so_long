@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 13:32:21 by adores            #+#    #+#             */
-/*   Updated: 2025/07/09 14:28:24 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/10 15:10:57 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,5 @@ char			**copy_map(char **map);
 void			free_map(char **map);
 int				count_elements(t_map *things, char **map, int *collectibles);
 int				check_walls(char **map);
+void			destroy_map(t_game *game);
 #endif
