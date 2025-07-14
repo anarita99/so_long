@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:11:49 by adores            #+#    #+#             */
-/*   Updated: 2025/07/10 14:59:34 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/14 14:52:41 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	counts(t_map *things, char position, int *collectibles)
 	{
 		things->collectibles++;
 		*collectibles += 1;
-		if(*collectibles <= 0)
+		if (*collectibles <= 0)
 			return (0);
 	}
 	return (1);
@@ -100,7 +100,7 @@ int	count_elements(t_map *things, char **map, int *collectibles)
 		}
 		row++;
 	}
-	if(things->collectibles == 0)
+	if (things->collectibles == 0)
 		return (0);
 	return (1);
 }

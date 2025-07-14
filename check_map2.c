@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:21:39 by adores            #+#    #+#             */
-/*   Updated: 2025/07/10 12:37:31 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/14 14:55:39 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,28 @@ static int	all_reachable(char **map_copy)
 	return (1);
 }
 
+static int	diff_characters(char **mapcopy)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (mapcopy[y])
+	{
+		x = 0;
+		while (mapcopy[y][x])
+		{
+			if (mapcopy[y][x] != 'C' && mapcopy[y][x] != 'E'
+			&& mapcopy[y][x] != '1' && mapcopy[y][x] != '0'
+			&& mapcopy[y][x] != 'P' && mapcopy[y][x] != '\n')
+				return (0);
+			x++;
+		}
+		y++;
+	}
+	return (1);
+}
+
 int	ft_validatemap(t_game *game)
 {
 	char	**map_copy;
@@ -73,7 +95,8 @@ int	ft_validatemap(t_game *game)
 		return (0);
 	map_copy = copy_map(game->map);
 	if (!check_walls(game->map) || !is_map_rectangular(game->map)
-		|| !count_elements(&game->map_things, game->map, &game->fishes))
+		|| !count_elements(&game->map_things, game->map, &game->fishes)
+		|| !diff_characters(map_copy))
 	{
 		free_map(map_copy);
 		return (0);

@@ -14,42 +14,41 @@ NAME = so_long
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -Imlx -g
+CFLAGS = -Wall -Wextra -Werror -g
 
 REPO := https://github.com/42paris/minilibx-linux.git
 
-MLX_DIR = minilibx-linux
-MLX_LIB = -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm
+LFLAGS = -Lminilibx-linux -lmlx_Linux -lXext -lX11 -Llibft -lft -Lft_printf -lftprintf
 
+MLX_DIR = ./minilibx-linux
 GNL_DIR = get_next_line
 GNL_SRC = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
 
-PRINTF = ft_printf/ft_printstr.c ft_printf/ft_hexaputnbr.c \
-	ft_printf/ft_printchar.c ft_printf/ft_printf.c \
-	ft_printf/ft_printnbr.c ft_printf/ft_unsputnbr.c ft_printf/ft_printp.c
-
 SRC = cat.c keys.c map.c check_map.c check_map2.c free_things.c \
-	copy_map.c for_main.c so_long.c $(GNL_SRC) $(PRINTF)
+	copy_map.c for_main.c so_long.c $(GNL_SRC)
+
+HEADER = so_long.h
+
 OBJ = $(SRC:.c=.o)
 
-all: $(MLX_DIR)/libmlx_Linux.a $(NAME)
+all: $(NAME)
 
-$(MLX_DIR)/libmlx_Linux.a:
-	if [ ! -d "$(MLX_DIR)" ]; then \
-		git clone $(REPO) $(MLX_DIR); \
-	fi
+$(NAME): $(OBJ) $(HEADER)
 	$(MAKE) -C $(MLX_DIR)
-
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(MLX_LIB) -o $(NAME)
+	$(MAKE) -C ./ft_printf
+	$(MAKE) -C ./libft
+	$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME) -I.
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(LIBFT)
 	$(MAKE) -C $(MLX_DIR) clean
+	$(MAKE) -C ./libft clean
+	$(MAKE) -C ./ft_printf clean
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C $(MLX_DIR) clean
+	$(MAKE) -C ./libft fclean
+	$(MAKE) -C ./ft_printf fclean
 
 re: fclean all
 

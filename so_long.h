@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 13:32:21 by adores            #+#    #+#             */
-/*   Updated: 2025/07/10 15:10:57 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/14 12:27:14 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include "get_next_line/get_next_line.h"
 # include "ft_printf/ft_printf.h"
+# include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -81,4 +82,5 @@ void			free_map(char **map);
 int				count_elements(t_map *things, char **map, int *collectibles);
 int				check_walls(char **map);
 void			destroy_map(t_game *game);
+
 #endif
