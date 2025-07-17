@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 13:32:21 by adores            #+#    #+#             */
-/*   Updated: 2025/07/14 12:27:14 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/17 15:24:26 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ typedef struct s_game
 	int			moves;
 	t_cat_dir	cat_dir;
 	void		*idle[4];
-	void		*walkr[4];
-	void		*walkl[4];
-	void		*walku[4];
-	void		*walkd[4];
+	void		*wr[4];
+	void		*wl[4];
+	void		*wu[4];
+	void		*wd[4];
 	void		*floor;
 	void		*wood;
 	void		*fish;

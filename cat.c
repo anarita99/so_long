@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:03:58 by adores            #+#    #+#             */
-/*   Updated: 2025/07/08 11:40:06 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/17 15:32:59 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void	draw_cat_sprite(t_game *game, int f, int x, int y)
 	if (game->walk_timer > 0)
 	{
 		if (game->cat_dir == CAT_LEFT)
-			mlx_put_image_to_window(game->mlx, game->win, game->walkl[f], x, y);
+			mlx_put_image_to_window(game->mlx, game->win, game->wl[f], x, y);
 		else if (game->cat_dir == CAT_RIGHT)
-			mlx_put_image_to_window(game->mlx, game->win, game->walkr[f], x, y);
+			mlx_put_image_to_window(game->mlx, game->win, game->wr[f], x, y);
 		else if (game->cat_dir == CAT_DOWN)
-			mlx_put_image_to_window(game->mlx, game->win, game->walkd[f], x, y);
+			mlx_put_image_to_window(game->mlx, game->win, game->wd[f], x, y);
 		else if (game->cat_dir == CAT_UP)
-			mlx_put_image_to_window(game->mlx, game->win, game->walku[f], x, y);
+			mlx_put_image_to_window(game->mlx, game->win, game->wu[f], x, y);
 		game->walk_timer--;
 	}
 	else

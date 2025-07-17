@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:56:46 by adores            #+#    #+#             */
-/*   Updated: 2025/07/10 15:10:41 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/17 15:27:14 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int	destroy(t_game *game)
 	if (game->mlx)
 	{
 		ft_free(game, game->idle);
-		ft_free(game, game->walkr);
-		ft_free(game, game->walkl);
-		ft_free(game, game->walkd);
-		ft_free(game, game->walku);
+		ft_free(game, game->wr);
+		ft_free(game, game->wl);
+		ft_free(game, game->wd);
+		ft_free(game, game->wu);
 		free_img(game);
 		if (game->win)
 			mlx_destroy_window(game->mlx, game->win);
