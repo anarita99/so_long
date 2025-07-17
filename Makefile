@@ -41,7 +41,6 @@ $(NAME): $(OBJ) $(HEADER)
 
 clean:
 	rm -f $(OBJ) $(LIBFT)
-	$(MAKE) -C $(MLX_DIR) clean
 	$(MAKE) -C ./libft clean
 	$(MAKE) -C ./ft_printf clean
 

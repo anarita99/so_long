@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:21:39 by adores            #+#    #+#             */
-/*   Updated: 2025/07/14 14:55:39 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/17 11:29:19 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int	ft_validatemap(t_game *game)
 	char	**map_copy;
 
 	if (!game->map || !game->map[0])
+		return (0);
+	if ((!game->cat_x && !game->cat_y) || (!game->exit_x && !game->exit_y))
 		return (0);
 	map_copy = copy_map(game->map);
 	if (!check_walls(game->map) || !is_map_rectangular(game->map)
