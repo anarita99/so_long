@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:10:12 by adores            #+#    #+#             */
-/*   Updated: 2025/07/18 12:17:33 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/18 12:30:25 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	start_mlx(t_game *game)
 		return (0);
 	game->win = mlx_new_window(game->mlx, w, h, "so_long");
 	if (!game->win)
-		return (0);	
+		return (0);
 	return (1);
 }
 
