@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:14:08 by adores            #+#    #+#             */
-/*   Updated: 2025/07/17 15:39:45 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/18 11:30:18 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,48 +54,6 @@ int	load_images2(t_game *game, int w, int h)
 		|| !game->exit)
 		return (0);
 	return (1);
-}
-
-void	initiate_things(t_game *game)
-{
-	game->cat_x = 0;
-	game->cat_y = 0;
-	game->exit_x = 0;
-	game->exit_y = 0;
-	game->is_walking = 0;
-	game->map_things.collectibles = 0;
-	game->fishes = 0;
-	game->map_things.exit = 0;
-	game->map_things.player = 0;
-	game->moves = 0;
-	game->walk_timer = 4500;
-	game->cat_dir = CAT_RIGHT;
-}
-
-void	initiate_things2(t_game *game)
-{
-	int	row;
-	int	col;
-
-	row = -1;
-	while (game->map[++row])
-	{
-		col = 0;
-		while (game->map[row][col])
-		{
-			if (game->map[row][col] == 'P')
-			{
-				game->cat_x = col;
-				game->cat_y = row;
-			}
-			else if (game->map[row][col] == 'E')
-			{
-				game->exit_x = col;
-				game->exit_y = row;
-			}
-			col++;
-		}
-	}
 }
 
 void	ft_error(void)

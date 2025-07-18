@@ -24,7 +24,7 @@ MLX_DIR = ./minilibx-linux
 GNL_DIR = get_next_line
 GNL_SRC = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
 
-SRC = cat.c keys.c map.c check_map.c check_map2.c free_things.c \
+SRC = cat.c initiate.c keys.c map.c check_map.c check_map2.c free_things.c \
 	copy_map.c for_main.c so_long.c $(GNL_SRC)
 
 HEADER = so_long.h

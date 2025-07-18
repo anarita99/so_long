@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 13:32:21 by adores            #+#    #+#             */
-/*   Updated: 2025/07/17 15:24:26 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/18 12:12:49 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int				load_images(t_game *game, int w, int h);
 int				load_images2(t_game *game, int w, int h);
 void			initiate_things(t_game *game);
 void			initiate_things2(t_game *game);
+void			initiate_things3(t_game *game);
 void			ft_error(void);
 char			**read_map(const char *filename);
 void			draw_map(t_game *game);
