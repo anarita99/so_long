@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:10:12 by adores            #+#    #+#             */
-/*   Updated: 2025/07/18 17:22:15 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/21 10:38:49 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,47 +30,18 @@ static int	start_mlx(t_game *game)
 	return (1);
 }
 
-static int	ft_strcmp(char *s1, char *s2)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (s1[i] != '\0' || s2[i] != '\0')
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	return (0);
-}
-
 static int	is_file_ber(char *filename)
 {
 	int		i;
-	int		j;
 	char	*ber;
-	char	*temp;
 
 	ber = ".ber";
 	i = 0;
-	j = 0;
-	temp = ft_calloc(5, 1);
 	while (filename[i])
-	{
-		if (filename[i] == '.')
-		{
-			while (filename[i])
-			{
-				temp[j] = filename[i];
-				j++;
-				i++;
-			}
-			if (ft_strcmp(temp, ber) != 0)
-				return (free(temp), 1);
-		}
 		i++;
-	}
-	return (free(temp), 0);
+	if (ft_strncmp(&filename[i - 4], ber, 5) == 0)
+		return (0);
+	return(1);
 }
 
 static void	destroy_and_error(t_game *game)
