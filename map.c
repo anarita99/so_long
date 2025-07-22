@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 16:54:24 by adores            #+#    #+#             */
-/*   Updated: 2025/07/08 15:42:19 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/22 12:05:03 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ static int	count_lines(const char *filename)
 	line = get_next_line(fd);
 	while (line)
 	{
-		count++;
+		if (line[0] != '\n')
+			count++;
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	close(fd);
 	return (count);
 }
@@ -51,11 +54,10 @@ char	**read_map(const char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (free(map), NULL);
-	line = get_next_line(fd);
-	while (line)
+	while (i < lines)
 	{
-		map[i++] = line;
 		line = get_next_line(fd);
+		map[i++] = line;
 	}
 	map[i] = NULL;
 	close(fd);
