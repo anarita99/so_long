@@ -6,7 +6,7 @@
 /*   By: adores <adores@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:10:12 by adores            #+#    #+#             */
-/*   Updated: 2025/07/21 10:38:49 by adores           ###   ########.fr       */
+/*   Updated: 2025/07/22 10:25:42 by adores           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	is_file_ber(char *filename)
 		i++;
 	if (ft_strncmp(&filename[i - 4], ber, 5) == 0)
 		return (0);
-	return(1);
+	return (1);
 }
 
 static void	destroy_and_error(t_game *game)
