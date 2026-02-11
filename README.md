@@ -51,12 +51,15 @@ Run the game by providing a valid .ber map file:
 
 **Objective:** Help the cat collect all the Fish (C) on the map. Once all fish are eaten, the Exit (E) opens. Reaching the exit wins the game.
 
-## Key	Action
-W	Move Up
-A	Move Left
-S	Move Down
-D	Move Right
-ESC	Close Game
+### Controls
+
+| Key | Action |
+|:---:|:-------|
+| `W` | Move Up |
+| `A` | Move Left |
+| `S` | Move Down |
+| `D` | Move Right |
+| `ESC` | Close Game |
 
 **Move Counter:** The current number of moves is printed to your shell as you play.
 
