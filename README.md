@@ -27,7 +27,8 @@ A 2D puzzle game developed in **C** using the **MiniLibX** library. You play as 
 ```
 ## Compilation Instructions
 
-**Important:** This project requires the MiniLibX library to be compiled before the main game. You must run the commands in this specific order:
+**Prerequisites**: Before running the game, ensure you have the necessary dependencies for the MinilibX (on Linux, this usually includes libxext-dev and libbsd-dev).
+
 
 1. **Build the Graphics Library**
 ```bash
@@ -37,7 +38,8 @@ make mlx
 ```bash
 make
 ```
-    Note: If you run make without building the mlx library first, the linker will fail.
+
+Note: If you run make without building the mlx library first, the linker will fail.
 
 ## How to run
 
@@ -47,40 +49,59 @@ Run the game by providing a valid .ber map file:
 ```
 ## Gameplay & Controls
 
-Objective: Help the cat collect all the Fish (C) on the map. Once all fish are eaten, the Exit (E) opens. Reaching the exit wins the game.
-Key	Action
+**Objective:** Help the cat collect all the Fish (C) on the map. Once all fish are eaten, the Exit (E) opens. Reaching the exit wins the game.
+
+## Key	Action
 W	Move Up
 A	Move Left
 S	Move Down
 D	Move Right
 ESC	Close Game
 
-    Move Counter: The current number of moves is printed to your shell as you play.
+**Move Counter:** The current number of moves is printed to your shell as you play.
 
 # Features
 
-    Animated Sprites: The player (cat) has idle animations and directional walking animations (up, down, left, right).
+**Animated Sprites:** The player (cat) has idle animations and directional walking animations (up, down, left, right).
 
-    Map Validation: The game checks if the map is rectangular, surrounded by walls, and uses a Flood Fill algorithm to ensure there is a valid path to all collectibles and the exit.
+**Leak Free:** All images, windows, and map memory are cleanly freed upon exit.
 
-    Leak Free: All images, windows, and map memory are cleanly freed upon exit.
+# Map Format
 
-# Map Rules
+Maps use the `.ber` extension and must follow these rules:
 
-The map file (.ber) must follow these rules:
+### Valid Characters
 
-    Rectangular shape.
+| Symbol | Meaning |
+|:------:|:--------|
+| `1` | Wall   |
+| `0` | Empty floor |
+| `P` | Player start position (Cat) 🐱 |
+| `C` | Collectible (Fish) 🐟 |
+| `E` | Exit  |
 
-    Closed by walls (1).
+### Requirements
 
-# Components:
+- Must be rectangular  
+- Surrounded by walls (`1`)  
+- Contains exactly **one** player (`P`)  
+- Contains exactly **one** exit (`E`)  
+- Contains at least **one** collectible (`C`)  
+- Valid path must exist to all collectibles and the exit  
 
-        1 : Wall
+### Example Map
 
-        0 : Floor
+```text
+111111111111
+100000000001
+10P000C00001
+1000111110C1
+1C0000000001
+100000000E01
+111111111111
+```
 
-        P : Player Start (Cat)
+**Made with ❤️ and ☕ at 42**
 
-        C : Collectible (Fish)
+*Go help that cat get some fish!* 🐱🐟
 
-        E : Map Exit
